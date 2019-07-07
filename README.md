@@ -8,12 +8,33 @@ Create an array of strings called `colors` that contain "orange", "red", "yellow
 
 Then, using array subscripting and string interpolation, print out the String `"orange, yellow, and lavender are some of my favorite colors"`.
 
+var colors: [String] = ["orange", "red", "yellow", "turquoise", "lavender"]
+
+colors.remove(at: 1)
+colors.remove(at:3)
+
+
+for word in colors {
+if String(word) == "turquoise" {
+print("and " + "\(word) " + "are some of my favorite colors.")
+} else {
+print("\(word)" + "," , terminator: " ")
+}
+}
+
 
 ## Question 2
 
 Remove "Illinois" and "Kansas" from the array below.
 
 `var westernStates = ["California", "Oregon", "Washington", "Idaho", "Illinois", "Kansas"]`
+
+var westernStates = ["California", "Oregon", "Washington", "Idaho", "Illinois", "Kansas"]
+
+westernStates.remove(at: 4)
+westernStates.removeLast()
+
+print(westernStates)
 
 
 ## Question 3
@@ -29,10 +50,38 @@ Print out how many non-whitespace characters are in `myString`:
 
 `let myString = "This is good practice with Strings!"`
 
+var nonSpaces = ""
+
+for char in myString {
+if String(char) == " " {
+continue
+} else {
+nonSpaces += String(char)
+}
+}
+
+print(nonSpaces.count)
 Iterate through the array below. For each sentence, print out how many non-whitespace characters are in it.
 
 `let myFavoriteQuotes = ["To be or not to be, that is the question.", "The only source of knowledge is experience.", "Mr. Gorbachev, tear down this wall!", "Four score and twenty years ago..."]`
 
+var string: String = ""
+var nonSpaces = ""
+
+
+for sentence in myFavoriteQuotes {
+string += sentence
+for char in string {
+if String(char) == " " {
+continue
+} else {
+nonSpaces += String(char)
+}
+}
+print(nonSpaces.count)
+nonSpaces = ""
+string = ""
+}
 
 ## Question 5
 
@@ -41,6 +90,27 @@ Iterate through `garden` and place any 🌷 that you find into the `basket`. Rep
 ```swift
 var garden = ["dirt","🌷","dirt","🌷","dirt","dirt","🌷","dirt","🌷","dirt"]
 var basket = [String]()
+
+
+var garden = ["dirt","🌷","dirt","🌷","dirt","dirt","🌷","dirt","🌷","dirt"]
+var basket = [String]()
+var counter = 0
+
+
+for i in 0..<garden.count {
+if garden[i] == "dirt" {
+continue
+} else {
+basket.insert("🌷", at: 0)
+garden[i] = "dirt"
+}
+counter += 1
+}
+
+print(garden)
+print(basket)
+print(basket.count)
+
 ```
 
 ## Question 6
@@ -55,6 +125,19 @@ The below array represents an unfinished batting lineup for a baseball team. **Y
 `var battingLineup = ["Reyes", "Jeter", "Ramirez", "Pujols","Griffey","Thomas","Jones", "Rodriguez"]`
 
 
+battingLineup.append("Suzuki")
+
+battingLineup.remove(at: 1)
+battingLineup.insert("Tejada", at: 1)
+
+battingLineup.remove(at: 5)
+battingLineup.insert("Guerrero", at: 5)
+
+battingLineup.remove(at: 0)
+battingLineup.insert("Reyes", at: 7)
+
+print(battingLineup) 
+
 ## Question 7
 
 Given an array of Ints, find out if it contains a target number.  
@@ -66,6 +149,21 @@ Given an array of Ints, find out if it contains a target number.
 var numbers: [Int]
 
 let target: Int = 32
+
+var numbers = [1,49,88,79,32]
+
+let target: Int = 32
+
+for i in numbers {
+if i == 32 {
+print(true)
+break
+} else if i == numbers.last {
+print(false)
+}
+}
+
+
 ```
 
 Ex.1
@@ -97,6 +195,19 @@ Find the largest value in an array of Int.  Do not use the built-in `max()` meth
 let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
 
 //This creates an array of 100 numbers in between 0 and 200.  For now, you don't need to worry about how it does that.
+
+let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
+
+var max = 0
+
+for i in arrayOfNumbers {
+if i > max {
+max = i
+}
+}
+
+print(max)
+
 ```
 
 
@@ -108,6 +219,20 @@ Find the smallest value in an array of Int.  Do not use the built in min() metho
 let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
 
 //This creates an array of 100 numbers in between 0 and 200.  For now, you don't need to worry about how it does that.
+
+
+let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
+
+var min = 100
+
+for i in arrayOfNumbers {
+if i < min {
+min = i
+}
+}
+
+print(min)
+
 ```
 
 
@@ -118,11 +243,26 @@ Iterate through `secondListOfNumbers`, and print out all the odd numbers.
 `var secondListOfNumbers = [19,13,14,19,101,10000,141,404]`
 
 
+for i in secondListOfNumbers {
+if i % 2 != 0 {
+print(i)
+}
+}
+
 ## Question 11
 
 Iterate through `thirdListOfNumbers`, and print out the sum.
 
 `var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]`
+
+var sum = 0
+
+
+for i in thirdListOfNumbers {
+sum += i
+}
+
+print(sum)
 
 
 ## Question 12
@@ -131,6 +271,15 @@ Iterate through `thirdListOfNumbers`, and print out the sum of all the even numb
 
 `var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]`
 
+var evenSum = 0
+
+for i in thirdListOfNumbers {
+if i % 2 == 0 {
+evenSum += i
+}
+}
+
+print(evenSum)
 
 ## Question 13
 
@@ -139,7 +288,11 @@ Append every Int that appears in both `listOne` and `listTwo` to the `sharedElem
 ```swift
 var listOne = [28, 64, 7, 96, 13, 32, 94, 11, 80, 68]
 var listTwo = [18, 94, 48, 6, 42, 68, 79, 76, 13, 7]
-var sharedElements = [Int]()
+var sharedElements = [Int](listOne.filter(listTwo.contains)
+
+print(sharedElements)
+print(sharedElements.count)
+
 ```
 
 
@@ -150,6 +303,18 @@ Write code such that `noDupeList` has all the same Ints as `dupeFriendlyList`, b
 ```swift
 var dupeFriendlyList = [4,2,6,2,2,6,4,9,2,1]
 var noDupeList: [Int] = []
+
+var dupeFriendlyList = [4,2,6,2,2,6,4,9,2,1]
+var noDupeList: [Int] = []
+
+for i in dupeFriendlyList {
+if noDupeList.contains(i) {
+continue
+}; noDupeList += [i]
+}
+
+print(noDupeList)
+
 ```
 
 ## Question 15
@@ -159,11 +324,39 @@ Find the second smallest number in an Array of Ints
 `let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}`
 
 
+var min = 100
+var secondSmallest = 100
+
+for number in arrayOfNumbers {
+if number < min {
+secondSmallest = min
+min = number
+} else if number < secondSmallest {
+secondSmallest = number
+}
+}
+
+print(min)
+
+print(secondSmallest)
+
 ## Question 16
 
 If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
 Find the sum of all the multiples of 3 or 5 below 1000.
+
+var numbers = 0..<1000
+
+var sum = 0
+
+for i in numbers {
+if i % 3 == 0 || i % 5 == 0 {
+sum += i
+}
+}
+
+print(sum)
 
 
 ## Question 17
@@ -172,6 +365,25 @@ Make an array that contains all elements that appear **more than twice** in `som
 
 ```swift
 var someRepeatsAgain = [25,11,30,31,50,28,4,37,13,20,24,38,28,14,44,33,7,43,39,35,36,42,1,40,7,14,23,46,21,39,11,42,12,38,41,48,20,23,29,24,50,41,38,23,11,30,50,13,13,16,10,8,3,43,10,20,28,39,24,36,21,13,40,25,37,39,31,4,46,20,38,2,7,11,11,41,45,9,49,31,38,23,41,16,49,29,14,6,6,11,5,39,13,17,43,1,1,15,25]
+
+
+var dupeCheck: [Int] = []
+var dupes: [Int] = []
+
+
+for i in someRepeatsAgain {
+if dupes.contains(i) {
+continue
+}
+if dupeCheck.contains(i) {
+dupes += [i]
+}
+dupeCheck += [i]
+}
+
+print(dupes)
+
+
 ```
 
 
@@ -189,6 +401,23 @@ Given an array of Strings, find the the String with the most "a"s in it.
 input: `["apes", "abba", "apple"]`
 
 output: `"abba"`
+
+
+var input = ["apes", "abba", "apple"]
+var string = "zzz"
+var currentWord = "zzzz"
+
+
+
+for word in input {
+if string < currentWord {
+currentWord = string
+string = ""
+}
+string += word
+}
+
+print(currentWord)
 
 
 ## Question 20
